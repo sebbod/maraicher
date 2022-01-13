@@ -18,7 +18,8 @@ Encore
      * ENTRY CONFIG
      *
      * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
+     * and one CSS file (e.g. app.scss) if your JavaScript imports CSS.
+     * bod note : en relation avec {{ encore_entry_script_tags('app') }} du fichier base.twig
      */
     .addEntry('app', './assets/app.js')
 
