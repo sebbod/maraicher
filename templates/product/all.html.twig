@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Liste des produits
+{% endblock %}
+
+{% block main %}
+    <h1>Liste des produits</h1>
+    <div id="listeProduits">
+        {% for i in 0..10 %}
+        <div>
+            <img src="https://via.placeholder.com/350x150" class="img-fluid" alt="image du produit">
+            <div>
+                <h5>Produit {{ i }}</h5>
+                <p>Catégorie : xxxxxx</p>
+                <p>Prix : {{ i + 10 }} €</p>
+                <small class="text-muted">Créé le {{ "now" | date("d/m/Y") }}</small>
+            </div>
+            <div>
+                <a href="#" class="btn btn-sm btn-primary">Détail</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+

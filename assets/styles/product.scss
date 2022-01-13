@@ -1,0 +1,19 @@
+h1{
+    color: red;
+}
+
+$border-color-card: #ccc;
+$alert-color:red;
+
+#listeProduits {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-gap: 5px;
+}
+
+#listeProduits >div {
+    border: 1px solid $border-color-card;
+    padding: 5px;
+    background-color: #fff;
+}
+

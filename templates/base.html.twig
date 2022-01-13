@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="fr-FR">
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}La ferme des grands chênes{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -14,6 +14,27 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    {% block body %}
+            <header>
+                {% include('inc/nav.html.twig') %}
+            </header>
+
+            {# read and display all flash messages #}
+{#
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash flash-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+#}
+            <main class="container_fluid">
+                {% block main %}{% endblock %}
+            </main>
+            <footer>
+                <div>&copy; {{ "now"|date("Y") }}</div>
+            </footer>
+    {% endblock %}
     </body>
 </html>
