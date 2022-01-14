@@ -29,9 +29,9 @@ class Stocks
     private $qty;
 
     /**
-     * @var string|null
+     * @var string
      *
-     * @ORM\Column(name="price", type="decimal", precision=6, scale=2, nullable=true, options={"comment"="prix par defaut du produit pour son unités de vente"})
+     * @ORM\Column(name="price", type="decimal", precision=6, scale=2, nullable=false, options={"comment"="prix par defaut du produit pour son unités de vente"})
      */
     private $price;
 
@@ -58,16 +58,16 @@ class Stocks
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\OrdersHasStocks", mappedBy="stocks")
+     * @ORM\ManyToMany(targetEntity="Orders", mappedBy="stocks")
      */
-    private $ordersHasStocks;
+    private $orders;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->ordersHasStocks = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 }
