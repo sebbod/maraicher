@@ -6,6 +6,7 @@
  */
 
 // any CSS you import will output into a single css file (app.scss in this case)
+import './styles/bootstrap.scss';
 import './styles/app.scss';
 import './styles/product.scss';
 
