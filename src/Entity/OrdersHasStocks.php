@@ -20,13 +20,6 @@ use Doctrine\ORM\Mapping as ORM;
 class OrdersHasStocks
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    protected $id;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="price", type="decimal", precision=6, scale=2, nullable=false, options={"comment"="prix de vente de ce produit pour cette commande"})
@@ -36,9 +29,10 @@ class OrdersHasStocks
     /**
      * @var \Stocks
      *
-     * @ORM\ManyToOne(targetEntity="Stocks", inversedBy="orders_has_stocks")
+     * @ORM\Id()
+     * @ORM\ManyToOne(targetEntity="Stocks", inversedBy="orders")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="stocks_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="stocks_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $stocks;
@@ -46,9 +40,10 @@ class OrdersHasStocks
     /**
      * @var \Orders
      *
-     * @ORM\ManyToOne(targetEntity="Orders", inversedBy="orders_has_stocks")
+     * @ORM\Id()
+     * @ORM\ManyToOne(targetEntity="Orders", inversedBy="stocks")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="orders_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="orders_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $orders;
@@ -64,14 +59,11 @@ class OrdersHasStocks
 
     public function __toString()
     {
-        $format = "OrdersHasStocks (Id: %s, Stock: %s, Order: %s;Price: %s)\n";
-        return sprintf($format, $this->id, $this->stocks, $this->orders, $this->price);
+        $format = "OrdersHasStocks (Stock: %s, Order: %s;Price: %s)\n";
+        return sprintf($format, $this->stocks, $this->orders, $this->price);
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+
 
     public function getPrice(): ?string
     {

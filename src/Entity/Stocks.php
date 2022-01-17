@@ -9,9 +9,15 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Stocks
  *
- * @ORM\Table(name="stocks", indexes={
- *     @ORM\Index(name="fk_stocks_products1_idx", columns={"products_id"}),
- *     @ORM\Index(name="fk_stocks_units1_idx", columns={"units_id"})})
+ * @ORM\Table(name="stocks",
+ *     uniqueConstraints={
+ *          @ORM\UniqueConstraint(name="product_unit_unique", columns={"products_id", "units_id"})
+ *     },
+ *     indexes={
+ *          @ORM\Index(name="fk_stocks_products1_idx", columns={"products_id"}),
+ *          @ORM\Index(name="fk_stocks_units1_idx", columns={"units_id"})
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=StocksRepository::class)
  */
 class Stocks
@@ -44,7 +50,7 @@ class Stocks
      *
      * @ORM\ManyToOne(targetEntity="Products")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="products_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="products_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $products;
@@ -54,7 +60,7 @@ class Stocks
      *
      * @ORM\ManyToOne(targetEntity="Units")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="units_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="units_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $units;
@@ -62,7 +68,7 @@ class Stocks
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Orders", mappedBy="stocks")
+     * @ORM\OneToMany(targetEntity="OrdersHasStocks", mappedBy="stocks")
      */
     private $orders;
 
