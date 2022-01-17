@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Units
  *
  * @ORM\Table(name="units", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=UnitsRepository::class)
  */
 class Units
 {
@@ -64,5 +64,14 @@ class Units
         return $this;
     }
 
-
+    /**
+     * Cette méthode sera appelée si on fait un "echo" sur la classe elle-même
+     * Utile dans les formulaires avec le champ EntityType
+     *
+     * @return mixed
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

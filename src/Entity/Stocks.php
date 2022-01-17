@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="stocks", indexes={
  *     @ORM\Index(name="fk_stocks_products1_idx", columns={"products_id"}),
  *     @ORM\Index(name="fk_stocks_units1_idx", columns={"units_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=StocksRepository::class)
  */
 class Stocks
 {

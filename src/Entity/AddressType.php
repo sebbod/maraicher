@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Addresstype
+ * AddressType
  *
  * @ORM\Table(name="addresstype", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=AddressTypeRepository::class)
  */
-class Addresstype
+class AddressType
 {
     /**
      * @var int

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CustomersHasAddress
  *
  * @ORM\Table(name="customers_has_address", indexes={@ORM\Index(name="fk_customers_has_address_address1_idx", columns={"address_id"}), @ORM\Index(name="fk_customers_has_address_addressType1_idx", columns={"addressType_id"}), @ORM\Index(name="fk_customers_has_address_customers_idx", columns={"customers_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=CustomersHasAddressRepository::class)
  */
 class CustomersHasAddress
 {
@@ -29,7 +29,7 @@ class CustomersHasAddress
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Addresstype")
+     * @ORM\OneToOne(targetEntity="AddressType")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="addressType_id", referencedColumnName="id")
      * })
@@ -60,12 +60,12 @@ class CustomersHasAddress
         return $this;
     }
 
-    public function getAddresstype(): ?Addresstype
+    public function getAddresstype(): ?AddressType
     {
         return $this->addresstype;
     }
 
-    public function setAddresstype(?Addresstype $addresstype): self
+    public function setAddresstype(?AddressType $addresstype): self
     {
         $this->addresstype = $addresstype;
 
