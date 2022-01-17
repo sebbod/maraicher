@@ -48,5 +48,41 @@ class CustomersHasAddress
      */
     private $customers;
 
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Address $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getAddresstype(): ?Addresstype
+    {
+        return $this->addresstype;
+    }
+
+    public function setAddresstype(?Addresstype $addresstype): self
+    {
+        $this->addresstype = $addresstype;
+
+        return $this;
+    }
+
+    public function getCustomers(): ?Customers
+    {
+        return $this->customers;
+    }
+
+    public function setCustomers(?Customers $customers): self
+    {
+        $this->customers = $customers;
+
+        return $this;
+    }
+
 
 }

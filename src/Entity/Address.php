@@ -63,5 +63,82 @@ class Address
      */
     private $town;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(?string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(?string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getAdr1(): ?string
+    {
+        return $this->adr1;
+    }
+
+    public function setAdr1(?string $adr1): self
+    {
+        $this->adr1 = $adr1;
+
+        return $this;
+    }
+
+    public function getAdr2(): ?string
+    {
+        return $this->adr2;
+    }
+
+    public function setAdr2(?string $adr2): self
+    {
+        $this->adr2 = $adr2;
+
+        return $this;
+    }
+
+    public function getZcode(): ?string
+    {
+        return $this->zcode;
+    }
+
+    public function setZcode(?string $zcode): self
+    {
+        $this->zcode = $zcode;
+
+        return $this;
+    }
+
+    public function getTown(): ?string
+    {
+        return $this->town;
+    }
+
+    public function setTown(?string $town): self
+    {
+        $this->town = $town;
+
+        return $this;
+    }
+
 
 }

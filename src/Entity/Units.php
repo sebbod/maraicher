@@ -35,5 +35,34 @@ class Units
      */
     private $symbol;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSymbol(): ?string
+    {
+        return $this->symbol;
+    }
+
+    public function setSymbol(string $symbol): self
+    {
+        $this->symbol = $symbol;
+
+        return $this;
+    }
+
 
 }

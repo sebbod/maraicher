@@ -67,4 +67,45 @@ class OrdersHasStocks
         $format = "OrdersHasStocks (Id: %s, Stock: %s, Order: %s;Price: %s)\n";
         return sprintf($format, $this->id, $this->stocks, $this->orders, $this->price);
     }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(string $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getStocks(): ?Stocks
+    {
+        return $this->stocks;
+    }
+
+    public function setStocks(?Stocks $stocks): self
+    {
+        $this->stocks = $stocks;
+
+        return $this;
+    }
+
+    public function getOrders(): ?Orders
+    {
+        return $this->orders;
+    }
+
+    public function setOrders(?Orders $orders): self
+    {
+        $this->orders = $orders;
+
+        return $this;
+    }
 }
