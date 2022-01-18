@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * OrderStates
  *
  * @ORM\Table(name="order_states", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
- * @ORM\Entity(repositoryClass=OrderStatesRepository::class)
+ * @ORM\Entity(repositoryClass=App\Repository\OrderStatesRepository::class)
  */
 class OrderStates
 {

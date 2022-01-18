@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Customers;
 use App\Form\CustomersType;
+use App\Repository\CustomersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +33,7 @@ class CustomersController extends AbstractController
     /**
      * @Route("/new", name="customers_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, CustomersRepository $customersRepository): Response
     {
         $customer = new Customers();
         $form = $this->createForm(CustomersType::class, $customer);

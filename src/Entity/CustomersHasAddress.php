@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *          @ORM\Index(name="fk_customers_has_address_address1_idx", columns={"address_id"}),
  *          @ORM\Index(name="fk_customers_has_address_addressType1_idx", columns={"addressType_id"}),
  *          @ORM\Index(name="fk_customers_has_address_customers_idx", columns={"customers_id"})})
- * @ORM\Entity(repositoryClass=CustomersHasAddressRepository::class)
+ * @ORM\Entity(repositoryClass=App\Repository\CustomersHasAddressRepository::class)
  */
 class CustomersHasAddress
 {

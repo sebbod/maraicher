@@ -3,19 +3,21 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-
+// *          @ORM\UniqueConstraint(name="name_UNIQUE", columns={"name"}),
+// *          @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})
 /**
  * Customers
  *
  * @ORM\Table(name="customers",
  *     uniqueConstraints={
- *          @ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"}),
- *          @ORM\UniqueConstraint(name="name_UNIQUE", columns={"name"}),
- *          @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})
+ *          @ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})
  *                      }
  *     )
- * @ORM\Entity(repositoryClass=CustomersRepository::class)
+ * @ORM\Entity(repositoryClass=App\Repository\CustomersRepository::class)
+ * @UniqueEntity("name")
+ * @UniqueEntity("email")
  */
 class Customers
 {

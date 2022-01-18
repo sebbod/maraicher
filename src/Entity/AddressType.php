@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * AddressType
  *
  * @ORM\Table(name="addresstype", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
- * @ORM\Entity(repositoryClass=AddressTypeRepository::class)
+ * @ORM\Entity(repositoryClass=App\Repository\AddressTypeRepository::class)
  */
 class AddressType
 {

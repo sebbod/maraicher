@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  *          @ORM\Index(name="fk_orders_has_stocks_stocks1_idx", columns={"stocks_id"}),
  *          @ORM\Index(name="fk_orders_has_stocks_orders1_idx", columns={"orders_id"})
  *      })
- * @ORM\Entity(repositoryClass=OrdersHasStocksRepository::class)
+ * @ORM\Entity(repositoryClass=App\Repository\OrdersHasStocksRepository::class)
  */
 class OrdersHasStocks
 {
