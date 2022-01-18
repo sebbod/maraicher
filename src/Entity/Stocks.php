@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Stocks
@@ -19,6 +20,10 @@ use Doctrine\ORM\Mapping as ORM;
  *     }
  * )
  * @ORM\Entity(repositoryClass=App\Repository\StocksRepository::class)
+ *  * @UniqueEntity(
+ *          fields={"products", "units"},
+ *          errorPath="units",
+ *          message="Le couple produit/unité {{ value }} existe déjà")
  */
 class Stocks
 {
@@ -78,6 +83,12 @@ class Stocks
     public function __construct()
     {
         $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        $format = "Stocks (id: %s, product: %s, unit: %s, qty: %s, price: %s)\n";
+        return sprintf($format, $this->id, $this->getProducts()->getName(), $this->getUnits()->getName(), $this->qty, $this->price);
     }
 
     public function getId(): ?int

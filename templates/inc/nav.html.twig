@@ -10,12 +10,23 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('main_phpinfo') }}">phpinfo</a>
+                    <a class="nav-link" href="{{ path('customers_index') }}">Clients</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Stocks
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ path('stocks_index') }}">Stocks</a></li>
+                        <li><a class="dropdown-item" href="{{ path('products_index') }}">Produits</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('product_all') }}">Produits</a>
+                    <a class="nav-link" href="{{ path('product_all') }}">Produits sample cours</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('main_phpinfo') }}">phpinfo</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Dropdown

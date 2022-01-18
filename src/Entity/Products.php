@@ -3,12 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Products
  *
- * @ORM\Table(name="products", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
+ * @ORM\Table(name="products",
+ *     uniqueConstraints={
+ *          @ORM\UniqueConstraint(name="name", columns={"name"})
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=App\Repository\ProductsRepository::class)
+ * @UniqueEntity(fields={"name"}, message="Le nom {{ value }} est déjà utilisé par un autre produit")
  */
 class Products
 {

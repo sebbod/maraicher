@@ -5,19 +5,21 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-// *          @ORM\UniqueConstraint(name="name_UNIQUE", columns={"name"}),
-// *          @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})
+
 /**
  * Customers
  *
  * @ORM\Table(name="customers",
  *     uniqueConstraints={
- *          @ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})
+ *          @ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"}),
+ *          @ORM\UniqueConstraint(name="name_UNIQUE", columns={"name"}),
+ *          @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})
  *                      }
  *     )
  * @ORM\Entity(repositoryClass=App\Repository\CustomersRepository::class)
- * @UniqueEntity("name")
- * @UniqueEntity("email")
+ * @UniqueEntity(fields={"name"}, message="Le nom {{ value }} est déjà utilisé par un autre client")
+ * @UniqueEntity(fields={"email"}, message="L'email {{ value }} est déjà utilisé par un autre client")
+ * )
  */
 class Customers
 {
@@ -33,8 +35,7 @@ class Customers
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=45, nullable=false)
-     * @Assert\Unique(message="Le nom {{ value }} est déjà utilisé par une autre client")
+     * @ORM\Column(name="name", type="string", length=45, nullable=false, unique=true)
      */
     private $name;
 
@@ -55,8 +56,8 @@ class Customers
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=120, nullable=false)
-     * @Assert\Unique(message="L'email {{ value }} est déjà utilisé par une autre client")
+     * @ORM\Column(name="email", type="string", length=120, nullable=false, unique=true)
+     * @Assert\Email()
      */
     private $email;
 
