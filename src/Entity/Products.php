@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use App\Interfaces\BaseInterface;
 
 /**
  * Products
@@ -16,7 +17,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass=App\Repository\ProductsRepository::class)
  * @UniqueEntity(fields={"name"}, message="Le nom {{ value }} est déjà utilisé par un autre produit")
  */
-class Products
+class Products implements BaseInterface
 {
     /**
      * @var int

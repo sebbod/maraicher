@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Interfaces\BaseInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -21,7 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields={"email"}, message="L'email {{ value }} est déjà utilisé par un autre client")
  * )
  */
-class Customers
+class Customers implements BaseInterface
 {
     /**
      * @var int

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Interfaces\BaseInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="address", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
  * @ORM\Entity(repositoryClass=App\Repository\AdressRepository::class)
  */
-class Address
+class Address implements BaseInterface
 {
     /**
      * @var int
@@ -66,6 +67,11 @@ class Address
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->firstname.' '.$this->lastname;
     }
 
     public function getFirstname(): ?string

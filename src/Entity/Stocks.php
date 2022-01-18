@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Interfaces\BaseInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,7 +26,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *          errorPath="units",
  *          message="Le couple produit/unité {{ value }} existe déjà")
  */
-class Stocks
+class Stocks implements BaseInterface
 {
     /**
      * @var int
@@ -94,6 +95,11 @@ class Stocks
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->__toString();
     }
 
     public function getQty(): ?int

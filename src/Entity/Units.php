@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Interfaces\BaseInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="units", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
  * @ORM\Entity(repositoryClass=App\Repository\UnitsRepository::class)
  */
-class Units
+class Units implements BaseInterface
 {
     /**
      * @var int

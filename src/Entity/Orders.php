@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Interfaces\BaseInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="orders")
  * @ORM\Entity(repositoryClass=App\Repository\OrdersRepository::class)
  */
-class Orders
+class Orders implements BaseInterface
 {
     /**
      * @var int
@@ -65,9 +66,22 @@ class Orders
         $this->stocks = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function __toString()
+    {
+        $format = "Orders (id: %s, date: %s, client: %s, etat: %s)\n";
+        return sprintf($format, $this->id, $this->datecreate(),
+            $this->getCustomers()->getName(),
+            $this->getStates()->getName());
+    }
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->__toString();
     }
 
     public function getDatecreate(): ?\DateTimeInterface
