@@ -4,6 +4,22 @@
 
 {%  block main %}
     <h1>Accueil</h1>
+    <div data-controller="sample">
+        sample_1
+        <span class="sample-1"></span>
+        <br>
+        sample_2
+        <span class="sample-2">0</span>
+        <br>
+        sample_3
+        <span data-sample-target="count">0</span>
+        <br>
+        sample_4
+        <button data-action="click->sample#increment"
+            class="btn btn-primary btn-sm">
+            Click me!
+        </button>
+    </div>
 {% endblock %}
 
 
