@@ -9,9 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="customers_has_address",
  *     indexes={
- *          @ORM\Index(name="fk_customers_has_address_address1_idx", columns={"address_id"}),
- *          @ORM\Index(name="fk_customers_has_address_addressType1_idx", columns={"addressType_id"}),
- *          @ORM\Index(name="fk_customers_has_address_customers_idx", columns={"customers_id"})})
+ *          @ORM\Index(name="fk_customers_has_address_address_id", columns={"address_id"}),
+ *          @ORM\Index(name="fk_customers_has_address_addressType_id", columns={"addressType_id"}),
+ *          @ORM\Index(name="fk_customers_has_address_customers_id", columns={"customers_id"})})
  * @ORM\Entity(repositoryClass=App\Repository\CustomersHasAddressRepository::class)
  */
 class CustomersHasAddress

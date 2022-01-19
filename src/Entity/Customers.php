@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Interfaces\BaseInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -12,7 +14,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="customers",
  *     uniqueConstraints={
- *          @ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"}),
  *          @ORM\UniqueConstraint(name="name_UNIQUE", columns={"name"}),
  *          @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})
  *                      }
@@ -68,6 +69,16 @@ class Customers implements BaseInterface
      * @ORM\Column(name="siret", type="string", length=14, nullable=true, options={"fixed"=true})
      */
     private $siret;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Orders::class, mappedBy="customers", orphanRemoval=true)
+     */
+    private $Orders;
+
+    public function __construct()
+    {
+        $this->Orders = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -130,6 +141,36 @@ class Customers implements BaseInterface
     public function setSiret(?string $siret): self
     {
         $this->siret = $siret;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Orders[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->Orders;
+    }
+
+    public function addOrder(Orders $order): self
+    {
+        if (!$this->Orders->contains($order)) {
+            $this->Orders[] = $order;
+            $order->setCustomers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Orders $order): self
+    {
+        if ($this->Orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getCustomers() === $this) {
+                $order->setCustomers(null);
+            }
+        }
 
         return $this;
     }

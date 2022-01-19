@@ -16,8 +16,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *          @ORM\UniqueConstraint(name="product_unit_unique", columns={"products_id", "units_id"})
  *     },
  *     indexes={
- *          @ORM\Index(name="fk_stocks_products1_idx", columns={"products_id"}),
- *          @ORM\Index(name="fk_stocks_units1_idx", columns={"units_id"})
+ *          @ORM\Index(name="fk_stocks_products_id", columns={"products_id"}),
+ *          @ORM\Index(name="fk_stocks_units_id", columns={"units_id"})
  *     }
  * )
  * @ORM\Entity(repositoryClass=App\Repository\StocksRepository::class)

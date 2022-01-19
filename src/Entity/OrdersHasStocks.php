@@ -8,12 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Orders
  *
  * @ORM\Table(name="orders_has_stocks",
- *      uniqueConstraints={
- *          @ORM\UniqueConstraint(name="orders_has_stocks_unique", columns={"orders_id", "stocks_id"})
- *      },
  *      indexes={
- *          @ORM\Index(name="fk_orders_has_stocks_stocks1_idx", columns={"stocks_id"}),
- *          @ORM\Index(name="fk_orders_has_stocks_orders1_idx", columns={"orders_id"})
+ *          @ORM\Index(name="fk_orders_has_stocks_stocks_id", columns={"stocks_id"}),
+ *          @ORM\Index(name="fk_orders_has_stocks_orders_id", columns={"orders_id"})
  *      })
  * @ORM\Entity(repositoryClass=App\Repository\OrdersHasStocksRepository::class)
  */

@@ -6,11 +6,16 @@ use App\Interfaces\BaseInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Orders
  *
- * @ORM\Table(name="orders")
+ * @ORM\Table(name="orders",
+ *     indexes={
+ *          @ORM\Index(name="fk_orders_customers_id", columns={"customers_id"}),
+ *          @ORM\Index(name="fk_orders_states_id", columns={"states_id"})
+ *     })
  * @ORM\Entity(repositoryClass=App\Repository\OrdersRepository::class)
  */
 class Orders implements BaseInterface
@@ -27,29 +32,10 @@ class Orders implements BaseInterface
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreate", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
-     */
-    private $datecreate = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var \Customers
+     * @ORM\Column(name="dateCreate", type="datetime", nullable=false)
      *
-     * @ORM\OneToOne(targetEntity="Customers")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="customers_id", referencedColumnName="id", nullable=false)
-     * })
      */
-    private $customers;
-
-    /**
-     * @var \OrderStates
-     *
-     * @ORM\OneToOne(targetEntity="OrderStates")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="states_id", referencedColumnName="id", nullable=false)
-     * })
-     */
-    private $states;
+    private $datecreate;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -57,6 +43,18 @@ class Orders implements BaseInterface
      * @ORM\OneToMany(targetEntity="OrdersHasStocks", mappedBy="orders")
      */
     private $stocks;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Customers::class, inversedBy="Orders")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $customers;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=OrderStates::class, inversedBy="Orders")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $states;
 
     /**
      * Constructor
@@ -69,7 +67,7 @@ class Orders implements BaseInterface
     public function __toString()
     {
         $format = "Orders (id: %s, date: %s, client: %s, etat: %s)\n";
-        return sprintf($format, $this->id, $this->datecreate(),
+        return sprintf($format, $this->id, $this->datecreate,
             $this->getCustomers()->getName(),
             $this->getStates()->getName());
     }
@@ -96,30 +94,6 @@ class Orders implements BaseInterface
         return $this;
     }
 
-    public function getCustomers(): ?Customers
-    {
-        return $this->customers;
-    }
-
-    public function setCustomers(?Customers $customers): self
-    {
-        $this->customers = $customers;
-
-        return $this;
-    }
-
-    public function getStates(): ?OrderStates
-    {
-        return $this->states;
-    }
-
-    public function setStates(?OrderStates $states): self
-    {
-        $this->states = $states;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Stocks[]
      */
@@ -140,6 +114,30 @@ class Orders implements BaseInterface
     public function removeStock(OrdersHasStocks $stock): self
     {
         $this->stocks->removeElement($stock);
+
+        return $this;
+    }
+
+    public function getCustomers(): ?Customers
+    {
+        return $this->customers;
+    }
+
+    public function setCustomers(?Customers $customers): self
+    {
+        $this->customers = $customers;
+
+        return $this;
+    }
+
+    public function getStates(): ?OrderStates
+    {
+        return $this->states;
+    }
+
+    public function setStates(?OrderStates $states): self
+    {
+        $this->states = $states;
 
         return $this;
     }

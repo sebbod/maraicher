@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use App\Interfaces\BaseInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * OrderStates
  *
- * @ORM\Table(name="order_states", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
+ * @ORM\Table(name="order_states")
  * @ORM\Entity(repositoryClass=App\Repository\OrderStatesRepository::class)
  */
 class OrderStates implements BaseInterface
@@ -36,6 +38,16 @@ class OrderStates implements BaseInterface
      */
     private $description;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Orders::class, mappedBy="states", orphanRemoval=true)
+     */
+    private $Orders;
+
+    public function __construct()
+    {
+        $this->Orders = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +73,36 @@ class OrderStates implements BaseInterface
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Orders[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->Orders;
+    }
+
+    public function addOrder(Orders $order): self
+    {
+        if (!$this->Orders->contains($order)) {
+            $this->Orders[] = $order;
+            $order->setStates($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Orders $order): self
+    {
+        if ($this->Orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getStates() === $this) {
+                $order->setStates(null);
+            }
+        }
 
         return $this;
     }
